@@ -1,12 +1,12 @@
 <?php
 class Usuarios{
 
-  private String $nombre;
-  private String $apellido;
-  private String $correo;
-  private int $saldo;
-  private String $clave;
-  private String $fecha_nacimiento;
+  public String $nombre;
+  public String $apellido;
+  public String $correo;
+  public int $saldo;
+  public String $clave;
+  public String $fecha_nacimiento;
 
   public function __construct( $nombre, $apellido, $usuario, $correo, $saldo, $clave, $fecha_nacimiento ) {
     $this->nombre = $nombre;
@@ -20,11 +20,8 @@ class Usuarios{
 
   public function createUser( Conexion $conexion, Usuarios $usuario )
   {
-    $stmt = $conexion->prepare('INSERT INTO usuarios ( nombre, apellido, usuario, correo, saldo, clave, fecha_nacimiento ) 
-    VALUES (?, ?, ?, ?, ?, ?, ?) ');
-    $stmt->bind_param('sssiss', $nombre, $apellido, $usuario, $correo, $saldo, $clave, $fecha_nacimiento);
-    $stmt->execute();
-    $stmt->close();
+    $userArray = array($usuario->nombre, $usuario->apellido, $usuario->usuario, $usuario->correo, $usuario->saldo, $usuario->clave, $usuario->fecha_nacimiento);
+    $conexion->insertUser($userArray);
   }
 
 }

@@ -17,5 +17,13 @@ class Conexion{
   {
     return $this->conexion;
   }
+
+  public function insertUser($args = [])
+  {
+    $stmt = $this->conexion->prepare('INSERT INTO usuarios ( nombre, apellido, usuario, correo, saldo, clave, fecha_nacimiento ) 
+    VALUES (?, ?, ?, ?, ?, ?, ?) ');
+    $stmt->bind_param( 'ssssiss' , $args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6] );
+    $stmt->execute();
+  }
 }
 ?>
