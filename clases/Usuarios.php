@@ -8,18 +8,23 @@ class Usuarios{
   private String $clave;
   private String $fecha_nacimiento;
 
-  public function __construct($nombre, $apellido, $correo, $saldo, $clave, $fecha_nacimiento) {
-    $this->nombre = $correo;
+  public function __construct( $nombre, $apellido, $usuario, $correo, $saldo, $clave, $fecha_nacimiento ) {
+    $this->nombre = $nombre;
     $this->apellido = $apellido;
+    $this->usuario = $usuario;
     $this->correo = $correo;
     $this->saldo = $saldo;
     $this->clave = $clave;
     $this->fecha_nacimiento = $fecha_nacimiento;
   }
 
-  public function createUser($args = [])
+  public function createUser( Conexion $conexion, Usuarios $usuario )
   {
-    echo $args;
+    $stmt = $conexion->prepare('INSERT INTO usuarios ( nombre, apellido, usuario, correo, saldo, clave, fecha_nacimiento ) 
+    VALUES (?, ?, ?, ?, ?, ?, ?) ');
+    $stmt->bind_param('sssiss', $nombre, $apellido, $usuario, $correo, $saldo, $clave, $fecha_nacimiento);
+    $stmt->execute();
+    $stmt->close();
   }
 
 }
