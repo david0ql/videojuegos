@@ -20,8 +20,7 @@ class Usuarios{
 
   public function createUser( Conexion $conexion, Usuarios $usuario )
   {
-    $userArray = array($usuario->nombre, $usuario->apellido, $usuario->usuario, $usuario->correo, $usuario->saldo, $usuario->clave, $usuario->fecha_nacimiento);
-    $conexion->insertUser($userArray);
+    $conexion->insertUser(array($usuario->nombre, $usuario->apellido, $usuario->usuario, $usuario->correo, $usuario->saldo, $usuario->clave, $usuario->fecha_nacimiento));
   }
 
 }
