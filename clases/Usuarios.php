@@ -4,11 +4,13 @@ class Usuarios{
   public String $nombre;
   public String $apellido;
   public String $correo;
+  public String $usuario;
   public int $saldo;
-  public String $clave;
+  public ?String $clave;
   public String $fecha_nacimiento;
 
-  public function __construct( $nombre, $apellido, $usuario, $correo, $saldo, $clave, $fecha_nacimiento ) {
+  public function __construct( $nombre, $apellido, $usuario, $correo, $saldo, ?String $clave, $fecha_nacimiento ) {
+    
     $this->nombre = $nombre;
     $this->apellido = $apellido;
     $this->usuario = $usuario;
@@ -23,9 +25,9 @@ class Usuarios{
     $conexion->insertUser(array($usuario->nombre, $usuario->apellido, $usuario->usuario, $usuario->correo, $usuario->saldo, $usuario->clave, $usuario->fecha_nacimiento));
   }
 
-  public function verifyIfExistUser()
+  public static function userInfo($args = [])
   {
-    # code...
+        return new Usuarios( $args["nombre"], $args["apellido"], $args["usuario"], $args["correo"], $args["saldo"], null, $args["fecha_nacimiento"] );
   }
 
 }

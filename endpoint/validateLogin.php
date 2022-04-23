@@ -2,19 +2,14 @@
 
 /*
 
-Param -> nombre :  String
-Param -> apellido :  String
 Param -> usuario :  String
-Param -> correo :  String
-Param -> saldo :  int
 Param -> clave :  String
-Param -> fecha_nacimiento :  String
 
 */
 
 //Incluir las cabeceras
 include('../conexion/conexion.php');
-include('../clases/Usuarios.php');
+include('../clases/UserLogin.php');
 
 //Incluir CORS
 header("Access-Control-Allow-Origin: *");
@@ -25,9 +20,8 @@ header("Allow: POST");
 if(verifyMethod($_SERVER['REQUEST_METHOD']))
 {
   $conexion = new Conexion();
-  $usuario = new Usuarios( $_GET['nombre'], $_GET['apellido'], $_GET['usuario'],
-   $_GET['correo'], $_GET['saldo'], $_GET['clave'], $_GET['fecha_nacimiento']);
-  $usuario->createUser($conexion, $usuario);
+  $usuario = new UserLogin( $_GET['usuario'], $_GET['clave']);
+  $usuario->verifyIfExistUser($conexion, $usuario);
 }
 
 function verifyMethod($method)
