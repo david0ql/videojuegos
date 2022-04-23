@@ -2,7 +2,7 @@
 
 //Incluir las cabeceras
 include('../conexion/conexion.php');
-include('../clases/Usuarios.php');
+include('../clases/Skins.php');
 
 //Incluir CORS
 header("Access-Control-Allow-Origin: *");
@@ -13,9 +13,8 @@ header("Allow: POST");
 if(verifyMethod($_SERVER['REQUEST_METHOD']))
 {
   $conexion = new Conexion();
-  $usuario = new Usuarios( $_GET['nombre'], $_GET['apellido'], $_GET['usuario'],
-   $_GET['correo'], $_GET['saldo'], $_GET['clave'], $_GET['fecha_nacimiento']);
-  $usuario->createUser($conexion, $usuario);
+  $skin = new Skins( $_GET['nombre'], $_GET['ruta'], $_GET['precio'] );
+  $skin->createSkin($conexion, $skin);
 }
 
 function verifyMethod($method)

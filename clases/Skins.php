@@ -2,14 +2,19 @@
 
 class Skins{
 
-  private String $nombre;
-  private String $ruta;
-  private String $fecha_creacion;
+  public String $nombre;
+  public String $ruta;
+  public int $precio;
 
-  public function __construct($nombre, $ruta, $fecha_creacion) {
+  public function __construct($nombre, $ruta, $precio) {
     $this->nombre = $nombre;
     $this->ruta = $ruta;
-    $this->fecha_creacion = $fecha_creacion;
+    $this->precio = $precio;
+  }
+
+  public function createSkin( Conexion $conexion, Skins $skin )
+  {
+    $conexion->insertSkin(array($skin->nombre, $skin->ruta, $skin->precio));
   }
 
 }

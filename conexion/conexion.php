@@ -25,5 +25,19 @@ class Conexion{
     $stmt->bind_param( 'ssssiss' , $args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6] );
     $stmt->execute();
   }
+
+  public function insertSkin($args = [])
+  {
+    $stmt = $this->conexion->prepare('INSERT INTO skins ( nombre, ruta, precio ) VALUES ( ?, ?, ? ) ');
+    $stmt->bind_param( 'ssi' , $args[0], $args[1], $args[2] );
+    $stmt->execute();
+  }
+
+  public function insertSale($args = [])
+  {
+    $stmt = $this->conexion->prepare('INSERT INTO ventas ( id_usuario, id_skin ) VALUES ( ?, ? ) ');
+    $stmt->bind_param( 'ii' , $args[0], $args[1] );
+    $stmt->execute();
+  }
 }
 ?>
