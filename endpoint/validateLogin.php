@@ -26,7 +26,7 @@ if(verifyMethod($_SERVER['REQUEST_METHOD']))
 {
   $conexion = new Conexion();
   $usuario = new Usuarios( $_GET['nombre'], $_GET['apellido'], $_GET['usuario'],
-   $_GET['correo'], $_GET['saldo'], password_hash($_GET['clave'], PASSWORD_BCRYPT), $_GET['fecha_nacimiento']);
+   $_GET['correo'], $_GET['saldo'], $_GET['clave'], $_GET['fecha_nacimiento']);
   $usuario->createUser($conexion, $usuario);
 }
 

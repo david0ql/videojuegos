@@ -23,5 +23,10 @@ class Usuarios{
     $conexion->insertUser(array($usuario->nombre, $usuario->apellido, $usuario->usuario, $usuario->correo, $usuario->saldo, $usuario->clave, $usuario->fecha_nacimiento));
   }
 
+  public function verifyIfExistUser()
+  {
+    # code...
+  }
+
 }
 ?>
