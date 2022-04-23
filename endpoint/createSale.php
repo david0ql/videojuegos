@@ -1,5 +1,12 @@
 <?php
 
+/*
+
+Param -> id_usuario : int
+Param -> id_skin : int
+
+*/
+
 //Incluir las cabeceras
 include('../conexion/conexion.php');
 include('../clases/Ventas.php');

@@ -1,5 +1,13 @@
 <?php
 
+/*
+
+Param -> nombre : String
+Param -> ruta : String
+Param -> precio : int
+
+*/
+
 //Incluir las cabeceras
 include('../conexion/conexion.php');
 include('../clases/Skins.php');
