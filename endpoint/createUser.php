@@ -25,8 +25,8 @@ header("Allow: POST");
 if(verifyMethod($_SERVER['REQUEST_METHOD']))
 {
   $conexion = new Conexion();
-  $usuario = new Usuarios( $_GET['nombre'], $_GET['apellido'], $_GET['usuario'],
-   $_GET['correo'], $_GET['saldo'], password_hash($_GET['clave'], PASSWORD_BCRYPT), $_GET['fecha_nacimiento']);
+  $usuario = new Usuarios( $_POST['nombre'], $_POST['apellido'], $_POST['usuario'],
+   $_POST['correo'], $_POST['saldo'], password_hash($_POST['clave'], PASSWORD_BCRYPT), $_POST['fecha_nacimiento']);
   $usuario->createUser($conexion, $usuario);
 }
 

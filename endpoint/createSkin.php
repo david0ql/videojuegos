@@ -21,7 +21,7 @@ header("Allow: POST");
 if(verifyMethod($_SERVER['REQUEST_METHOD']))
 {
   $conexion = new Conexion();
-  $skin = new Skins( $_GET['nombre'], $_GET['ruta'], $_GET['precio'] );
+  $skin = new Skins( $_POST['nombre'], $_POST['ruta'], $_POST['precio'] );
   $skin->createSkin($conexion, $skin);
 }
 

@@ -20,7 +20,7 @@ header("Allow: POST");
 if(verifyMethod($_SERVER['REQUEST_METHOD']))
 {
   $conexion = new Conexion();
-  $usuario = new UserLogin( $_GET['usuario'], $_GET['clave']);
+  $usuario = new UserLogin( $_POST['usuario'], $_POST['clave']);
   $usuario->verifyIfExistUser($conexion, $usuario);
 }
 

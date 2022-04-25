@@ -20,7 +20,7 @@ header("Allow: POST");
 if(verifyMethod($_SERVER['REQUEST_METHOD']))
 {
   $conexion = new Conexion();
-  $skin = new Ventas( $_GET['id_usuario'], $_GET['id_skin'] );
+  $skin = new Ventas( $_POST['id_usuario'], $_POST['id_skin'] );
   $skin->createSale($conexion, $skin);
 }
 
