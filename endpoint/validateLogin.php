@@ -23,7 +23,7 @@ if(verifyMethod($_SERVER['REQUEST_METHOD']))
     $usuario = new UserLogin( $_POST['usuario'], $_POST['clave']);
     $usuario->verifyIfExistUser($conexion, $usuario);
   }else{
-    echo json_encode("true");
+    echo json_encode("missing data");
   }
   
 }

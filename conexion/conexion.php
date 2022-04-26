@@ -59,7 +59,7 @@ class Conexion{
       (password_verify($args[1], $user["clave"])) ? $return = Usuarios::userInfo($user) : $return = false ;
       echo json_encode($return);
     }else{
-      echo json_encode("not exist");
+      echo json_encode('not exist');
     }
     
   }
