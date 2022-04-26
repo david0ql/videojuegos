@@ -9,7 +9,7 @@ Param -> id_skin : int
 
 //Incluir las cabeceras
 include('../conexion/conexion.php');
-include('../clases/Ventas.php');
+
 
 //Incluir CORS
 header("Access-Control-Allow-Origin: *");

@@ -10,7 +10,6 @@ Param -> precio : int
 
 //Incluir las cabeceras
 include('../conexion/conexion.php');
-include('../clases/Skins.php');
 
 //Incluir CORS
 header("Access-Control-Allow-Origin: *");

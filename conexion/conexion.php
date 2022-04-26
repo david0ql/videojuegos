@@ -1,5 +1,9 @@
 <?php
-include('../clases/Usuarios.php');
+include_once ('../clases/Usuarios.php');
+include_once ('../clases/Usuarios.php');
+include_once ('../clases/UserLogin.php');
+include_once ('../clases/Ventas.php');
+include_once ('../clases/Skins.php');
 class Conexion{
 
   public $conexion = null;
@@ -20,14 +24,14 @@ class Conexion{
   }
 
   public function insertUser( $args = [] ) 
-  {
-    $stmt = $this->conexion->prepare('INSERT INTO usuarios ( nombre, apellido, usuario, correo, saldo, clave, fecha_nacimiento ) 
-    VALUES (?, ?, ?, ?, ?, ?, ?) ');
-    $stmt->bind_param( 'ssssiss' , $args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6] );
+  { 
+    $stmt = $this->conexion->prepare('INSERT INTO usuarios ( nombre, apellido, usuario, correo, clave, fecha_nacimiento ) 
+    VALUES (?, ?, ?, ?, ?, ?) ');
+    $stmt->bind_param( 'ssssss' , $args[0], $args[1], $args[2], $args[3], $args[4], $args[5] );
     $stmt->execute();
     $result = $stmt->get_result();
-    ($result) ? $return = true : $return = false;
-    echo json_encode($return);
+    
+    echo json_encode(true);
   }
 
   public function insertSkin( $args = [] )
@@ -50,9 +54,14 @@ class Conexion{
     $stmt->bind_param( 's' , $args[0] );
     $stmt->execute();
     $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
-    (password_verify($args[1], $user["clave"])) ? $return = Usuarios::userInfo($user) : $return = false ;
-    echo json_encode($return);
+    if($result->num_rows == 1){
+      $user = $result->fetch_assoc();
+      (password_verify($args[1], $user["clave"])) ? $return = Usuarios::userInfo($user) : $return = false ;
+      echo json_encode($return);
+    }else{
+      echo json_encode("not exist");
+    }
+    
   }
 }
 ?>

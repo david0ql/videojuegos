@@ -14,7 +14,6 @@ Param -> fecha_nacimiento :  String
 
 //Incluir las cabeceras
 include('../conexion/conexion.php');
-include('../clases/Usuarios.php');
 
 //Incluir CORS
 header("Access-Control-Allow-Origin: *");
@@ -25,9 +24,14 @@ header("Allow: POST");
 if(verifyMethod($_SERVER['REQUEST_METHOD']))
 {
   $conexion = new Conexion();
-  $usuario = new Usuarios( $_POST['nombre'], $_POST['apellido'], $_POST['usuario'],
-   $_POST['correo'], $_POST['saldo'], password_hash($_POST['clave'], PASSWORD_BCRYPT), $_POST['fecha_nacimiento']);
-  $usuario->createUser($conexion, $usuario);
+  if(!empty($_POST['nombre']) && !empty($_POST['apellido']) && !empty($_POST['usuario']) && !empty($_POST['correo']) && !empty($_POST['clave']) && !empty($_POST['fecha_nacimiento']) ){
+    $usuario = new Usuarios( $_POST['nombre'], $_POST['apellido'], $_POST['usuario'],
+    $_POST['correo'], password_hash($_POST['clave'], PASSWORD_BCRYPT), $_POST['fecha_nacimiento']);
+   $usuario->createUser($conexion, $usuario);
+  }else{
+    echo json_encode("false");
+  }
+
 }
 
 function verifyMethod($method)
